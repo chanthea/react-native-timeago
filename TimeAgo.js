@@ -2,7 +2,8 @@
 import React, { Component } from "react";
 import { View, Text } from "react-native";
 import moment from "moment";
-
+import 'moment/locale/custom'  // without this line it didn't work
+moment.locale('custom')
 export default class TimeAgo extends Component {
   props: {
     time: string,
@@ -41,7 +42,7 @@ export default class TimeAgo extends Component {
     const { time, hideAgo } = this.props;
     return (
       <Text {...this.props}>
-        {moment(time).fromNow(hideAgo)}
+        {moment(time).locale('custom').fromNow(hideAgo)}
       </Text>
     );
   }
