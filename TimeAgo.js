@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import { View, Text } from "react-native";
 import moment from "moment";
 import 'moment/locale/custom'  // without this line it didn't work
+moment.locale('custom')
 export default class TimeAgo extends Component {
   props: {
     time: string,
@@ -42,7 +43,7 @@ export default class TimeAgo extends Component {
     const currentTime  =  moment(time);
     const duration = moment.duration(moment().diff(currentTime));
     const mins = duration.asMinutes();
-    let color  = "";
+    let color  = "#95a5a6";
     switch(true){
       case mins < 5 :
         color = "#27ae60";
@@ -62,8 +63,8 @@ export default class TimeAgo extends Component {
     const { time, hideAgo, style } = this.props;
     const color = this.getMinuteDifferent();
     return (
-      <Text style={[style,{color : color}]}>
-        {moment(time).locale('custom').fromNow(hideAgo)}
+    <Text style={[style,{color : color}]}>
+        {moment(time).fromNow(hideAgo)}
       </Text>
     );
   }
